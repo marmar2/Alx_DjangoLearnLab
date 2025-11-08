@@ -1,16 +1,14 @@
 
+from bookshelf.models import Book
 
-books = Book.objects.all()
+book = Book.objects.filter(title="1984")
 
-for i in books:print(i.title,i.author,i.publication_year)
 
-print(newBook.title,newBook.author,newBook.publication_year)
+book.delete()
 
-newBook.delete()
+book = Book.objects.get(title="1984")
 
-books = Book.objects.all()
-
-for i in books:print(i.title,i.author,i.publication_year)
+print(book.title,book.author,book.publication_year)
 
 
 <!--  -->
