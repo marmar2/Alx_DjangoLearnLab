@@ -2,20 +2,20 @@ from django.db import models
 
 # Create your models here.
 class Author(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,default='hii')
     
     def __str__(self):
         return self.name  # Shows author name in admin and shell
 
 class Book(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default='hii')
     author = models.ForeignKey(Author,on_delete=models.CASCADE,related_name="author")
     
     def __str__(self):
         return self.author  
 
 class Library(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,default='hii')
     books = models.ManyToManyField(Book,related_name="books")
 
     def __str__(self):
@@ -23,7 +23,7 @@ class Library(models.Model):
     
 
 class Librarian(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,default='hii')
     library = models.OneToOneField(Library,on_delete=models.CASCADE,related_name="librarian")
       
         
