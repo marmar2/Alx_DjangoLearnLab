@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Book , Librarian, Library, Author
+from .models import Book , Librarian, Author
+from .models import Library
 from django.http import HttpResponse
 from django.views.generic import DetailView
 
@@ -17,7 +18,7 @@ def book_list(request):
 #Create a class-based view in relationship_app/views.py that displays details for a specific library, listing all books available in that library
 class LibraryDetails(DetailView):
     model = Library
-    template_name = 'relationship_app/library_details.html'
+    template_name = 'relationship_app/library_detail.html'
     
     def get_context_data(self, **kwargs):
         contextDictionary = super().get_context_data(**kwargs) # default dict value
