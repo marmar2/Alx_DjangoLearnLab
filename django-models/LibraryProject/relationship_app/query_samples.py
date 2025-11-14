@@ -1,6 +1,6 @@
 from relationship_app.models import Book,Librarian,Library,Author
 
-
+#List all books in a library
 library_name = Library.objects.get(name="libraryxx")
 libraryName = Library.objects.get(name=library_name)              
 ListOfBooks = libraryName.books.all()   # books is related_name in class library , that has library and book mapping
@@ -10,7 +10,8 @@ author_name = 'authorxx'
 author = Author.objects.get(name=author_name)
 ListOfBooks_specificAuthor = Book.objects.filter(author=author)
 
-librarianName = Librarian.objects.get(library__name='hh')
+#Retrieve the librarian for a library
+librarianName = Librarian.objects.get(library='hh')
 
 # ORR
 # library = Library.objects.get(name="librarian") --- > reverse query librarian (related name) is a foreign key in Library
