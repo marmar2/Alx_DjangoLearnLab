@@ -3,6 +3,11 @@ from .models import Book , Librarian, Author
 from .models import Library
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
+from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.forms import UserCreationForm 
+from django.views.generic import CreateView
+from django.urls import reverse_lazy, path
+
 
 
 # Create your views here.
@@ -27,4 +32,14 @@ class LibraryDetailView(DetailView):
         return contextDictionary
 
 
-    
+class  SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'relationship_app/register.html'
+
+    def form_valid(self, form):
+        response =  super().form_valid(form)
+      #  login(self.request, self.object) #automatically logs in the new user right after signup
+        return response
+
+
