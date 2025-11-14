@@ -7,7 +7,8 @@ ListOfBooks = libraryName.books.all()   # books is related_name in class library
 
 #Query all books by a specific author.
 author_name = Author.objects.get(name='authorxx')
-ListOfBooks_specificAuthor = Book.objects.filter(author=author_name)
+AuthorName = Author.objects.get(name=author_name)
+ListOfBooks_specificAuthor = Book.objects.filter(author=AuthorName)
 
 librarianName = Librarian.objects.get(library__name='hh')
 
