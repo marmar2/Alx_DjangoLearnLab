@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from django.views.generic import CreateView
-from django.urls import reverse_lazy, path
+from django.urls import reverse_lazy
 
 
 
@@ -32,15 +32,23 @@ class LibraryDetailView(DetailView):
         contextDictionary['bookList'] = library.books.all()
         return contextDictionary
 
+def register(request):
+     form = UserCreationForm(request.POST or None)  # instantiate for POST or empty for GET
+     if form.is_valid():  # only save if form passes validation
+         user = form.save()
+         login(request, user)
+     success_url = reverse_lazy('login')
+     
+     return render(request, 'relationship_app/register.html', {'form': form})
 
-class  Register(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'relationship_app/register.html'
+# class  register(CreateView):
+#     form_class = UserCreationForm()
+#     success_url = reverse_lazy('login')
+#     template_name = 'relationship_app/register.html'
 
-    def form_valid(self, form):
-        response =  super().form_valid(form)
-        login(self.request, self.object) #automatically logs in the new user right after signup
-        return response
+#     def form_valid(self, form):
+#         response =  super().form_valid(form)
+#         login(self.request, self.object) #automatically logs in the new user right after signup
+#         return response
 
 
