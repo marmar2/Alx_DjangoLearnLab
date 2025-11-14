@@ -4,6 +4,7 @@ from .models import Library
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from django.views.generic import CreateView
 from django.urls import reverse_lazy, path
@@ -39,7 +40,7 @@ class  SignUpView(CreateView):
 
     def form_valid(self, form):
         response =  super().form_valid(form)
-      #  login(self.request, self.object) #automatically logs in the new user right after signup
+        login(self.request, self.object) #automatically logs in the new user right after signup
         return response
 
 
