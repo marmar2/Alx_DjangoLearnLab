@@ -2,21 +2,30 @@ from django.db import models
 
 # Create your models here.
 class Author(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name  # Shows author name in admin and shell
 
 class Book(models.Model):
-    title = models.CharField(),
-    author = models.ForeignKey(Author,on_delete=models.CASCADE,related_name="Books")
-
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey(Author,on_delete=models.CASCADE,related_name="books")
+    
+    def __str__(self):
+        return self.author  
 
 class Library(models.Model):
-    name = models.CharField(),
+    name = models.CharField(max_length=200)
     books = models.ManyToManyField(Book,related_name="libraries")
 
+    def __str__(self):
+        return self.name 
+    
+
 class Librarian(models.Model):
-    name = models.CharField(),
-    library = models.OneToOneField(Library,on_delete=models.CASCADE,related_name="librarians")
+    name = models.CharField(max_length=200)
+    library = models.OneToOneField(Library,on_delete=models.CASCADE,related_name="librarian")
       
+        
+    def __str__(self):
+        return self.name   
