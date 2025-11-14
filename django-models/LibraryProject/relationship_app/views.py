@@ -4,10 +4,11 @@ from .models import Library
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 
+
 # Create your views here.
 
 #This view should render a simple text list of book titles and their authors.
-def book_list(request):
+def list_books(request):
     books = Book.objects.all()
     book_list = {'books' : books}
 
