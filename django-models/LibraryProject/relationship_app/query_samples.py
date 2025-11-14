@@ -3,7 +3,7 @@ from relationship_app.models import Book,Librarian,Library,Author
 ListOfBooks_specificAuthor = Book.objects.filter(author__name='dd')
 
 
-libraryName = Library.objects.get(name='LibraryXX')
+libraryName = Library.objects.get(name='library_name')
 ListOfBooks = libraryName.books.all()   # books is related_name in class library , that has library and book mapping
 
 librarianName = Librarian.objects.get(library__name='hh')
