@@ -16,7 +16,7 @@ def list_books(request):
 
 
 #Create a class-based view in relationship_app/views.py that displays details for a specific library, listing all books available in that library
-class LibraryDetails(DetailView):
+class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
     
