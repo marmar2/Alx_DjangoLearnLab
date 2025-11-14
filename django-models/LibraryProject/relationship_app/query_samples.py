@@ -4,7 +4,7 @@ ListOfBooks_specificAuthor = Book.objects.filter(author__name='dd')
 
 
 libraryName = Library.objects.get(name='LibraryXX')
-ListOfBooks = libraryName.objects.all()
+ListOfBooks = libraryName.books.all()   # books is related_name in class library , that has library and book mapping
 
 librarianName = Librarian.objects.get(library__name='hh')
 
