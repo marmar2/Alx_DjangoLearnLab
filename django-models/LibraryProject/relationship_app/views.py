@@ -50,4 +50,3 @@ def register(request):
 #         login(self.request, self.object) #automatically logs in the new user right after signup
 #         return response
 
-
