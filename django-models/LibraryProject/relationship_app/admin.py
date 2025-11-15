@@ -1,3 +1,12 @@
-from django.contrib import admin
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+from models import UserProfile
 
-# Register your models here.
+
+
+def is_admin(user):
+    return user.UserProfile.role == 'admin'
+
+@user_passes_test(is_admin)
+def Admin(request):
+    return render(request,'admin_view.html')
