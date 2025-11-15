@@ -34,6 +34,8 @@ class Librarian(models.Model):
     def __str__(self):
         return self.name   
     
+    
+
 class UserProfile(models.Model):
     
     ROLE_CHOICES = [   #Tuple
@@ -41,8 +43,10 @@ class UserProfile(models.Model):
     ('librarian', 'Librarian'),
     ('member', 'Member'),
     ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='admin')
+
 
 @receiver(post_save, sender=User)
 def createUserProfile (sender, instance, created, **kwargs):
