@@ -52,3 +52,8 @@ class UserProfile(models.Model):
 def createUserProfile (sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def saveUserProfile (sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.save()        
