@@ -9,6 +9,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+from models import UserProfile
+
 
 # Create your views here.
 
@@ -50,3 +54,9 @@ def register(request):
 #         login(self.request, self.object) #automatically logs in the new user right after signup
 #         return response
 
+def is_admin(user):
+    return user.UserProfile.role == 'admin'
+
+@user_passes_test(is_admin)
+def checkadmin(request):
+    return render(request,'admin_view.html')
