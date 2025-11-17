@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
-from models import UserProfile
+from relationship_app.models import UserProfile
 
 
 
 def is_admin(user):
-    return user.UserProfile.role == 'Admin'
+    return user.is_authenticated and user.userprofile.role == 'admin'
 
 @user_passes_test(is_admin)
 def admin_view(request):
-    return render(request,'admin_view.html')
+    return render(request, 'admin_view.html')
