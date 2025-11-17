@@ -58,5 +58,5 @@ def is_admin(user):
     return user.UserProfile.role == 'Admin'
 
 @user_passes_test(is_admin)
-def Admin(request):
+def admin_view(request):
     return render(request,'admin_view.html')
